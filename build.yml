@@ -1,45 +1,28 @@
 name: Build Ruchika AI APK
-
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install SDK Platform 35
+      - name: Extract ZIP and setup project
         run: |
-          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
-
-      - name: Extract ZIP
-        run: |
-          unzip RUCHIKA_AI_v9_FIXED.zip
-          chmod +x ruchika-project/gradlew
-          echo "sdk.dir=$ANDROID_HOME" > ruchika-project/local.properties
-
+          unzip RUCHIKA_AI_v10_READY.zip
+          cd ruchika-project
+          chmod +x gradlew
       - name: Build Debug APK
-        working-directory: ruchika-project
         run: |
-          ./gradlew assembleDebug --no-daemon --stacktrace
-
+          cd ruchika-project
+          ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Ruchika-AI-APK
+          name: ruchika-apk
           path: ruchika-project/app/build/outputs/apk/debug/*.apk
-          retention-days: 30
