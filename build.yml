@@ -19,7 +19,7 @@ jobs:
           chmod +x gradlew
       - name: Build Debug APK
         run: |
-          cd ruchika-project
+          cd RUCHIKA_AI_v10_READY/ruchika-project
           ./gradlew assembleDebug
       - name: Upload APK
         uses: actions/upload-artifact@v4
