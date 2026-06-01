@@ -41,7 +41,7 @@ jobs:
           sed -i 's/targetSdk = 35/targetSdk = 36/' app/build.gradle.kts
       - name: Build Debug APK
         run: |
-          cd ruchika-project
+          cd RUCHIKA_AI_v10_READY/ruchika-project
           ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
