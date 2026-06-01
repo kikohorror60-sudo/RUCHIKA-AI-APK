@@ -15,7 +15,7 @@ jobs:
       - name: Extract ZIP and setup project
         run: |
           unzip RUCHIKA_AI_v10_FIXED_FINAL.zip
-          cd ruchika-project
+          cd RUCHIKA_AI_v10_READY/ruchika-project
           chmod +x gradlew
       - name: Build Debug APK
         run: |
